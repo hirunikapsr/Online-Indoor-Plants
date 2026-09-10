@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" width="100%" height="100%">
+        <defs>
+            <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#E8F5E9"/>
+                <stop offset="100%" stop-color="#C8E6C9"/>
+            </linearGradient>
+            <filter id="dropShadow" x="-10%" y="-10%" width="130%" height="130%">
+                <feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#1B4332" flood-opacity="0.15"/>
+            </filter>
+        </defs>
+        <rect width="300" height="400" rx="16" fill="url(#bgGrad)"/>
+        <!-- Soft floor shadow -->
+        <ellipse cx="150" cy="375" rx="75" ry="12" fill="#000000" opacity="0.12"/>
+        
+        <g filter="url(#dropShadow)">
+            
+        <!-- Soil -->
+        <ellipse cx="150" cy="280" rx="55" ry="10" fill="#3E2723"/>
+        <!-- Tall Sword Leaves -->
+        <path d="M150 280 Q130 180 145 70 Q160 180 150 280 Z" fill="#2E7D32" stroke="#1B5E20" stroke-width="3"/>
+        <path d="M150 280 Q130 180 145 70" fill="none" stroke="#A5D6A7" stroke-width="3"/>
+        
+        <path d="M135 280 Q105 190 120 100 Q145 200 135 280 Z" fill="#388E3C" stroke="#1B5E20" stroke-width="3"/>
+        <path d="M135 280 Q105 190 120 100" fill="none" stroke="#C8E6C9" stroke-width="2.5"/>
+
+        <path d="M165 280 Q195 190 180 95 Q155 200 165 280 Z" fill="#1B5E20" stroke="#0D5314" stroke-width="3"/>
+        <path d="M165 280 Q195 190 180 95" fill="none" stroke="#81C784" stroke-width="2.5"/>
+
+        <path d="M120 280 Q90 220 100 150 Q125 220 120 280 Z" fill="#4CAF50" stroke="#1B5E20" stroke-width="3"/>
+        <path d="M180 280 Q210 220 200 140 Q175 220 180 280 Z" fill="#2E7D32" stroke="#1B5E20" stroke-width="3"/>
+        
+            <path d="M90 280 L105 370 Q150 385 195 370 L210 280 Z" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="4"/>
+                     <ellipse cx="150" cy="280" rx="60" ry="12" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="4"/>
+        </g>
+    </svg>
