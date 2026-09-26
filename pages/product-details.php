@@ -62,7 +62,7 @@ $variations_json = json_encode($var_stmt->fetchAll());
       <div class="product-gallery">
         <img src="../<?php echo htmlspecialchars($product['main_image']); ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>" id="mainProductImg" class="main-product-img">
         <div style="margin-top: 15px; font-size: 0.85rem; color: var(--text-muted);">
-          📷 Live Pot Variation Preview (Plant + Pot Type + Pot Colour)
+         
         </div>
       </div>
 
@@ -114,7 +114,7 @@ $variations_json = json_encode($var_stmt->fetchAll());
           </div>
         </div>
 
-        <!-- Add To Cart Form with Pot Type & Colour Variations -->
+           <!-- Add To Cart Form with Pot Type & Colour Variations -->
         <form method="POST" action="cart.php" id="addToCartForm">
           <input type="hidden" name="action" value="add">
           <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
@@ -184,14 +184,19 @@ $variations_json = json_encode($var_stmt->fetchAll());
   </div>
 </section>
 
-<!-- Initialize Dynamic Variation Image Switcher JS -->
+<!-- Initialize Dynamic Variation Switcher -->
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
+  window.addEventListener('load', function () {
     const basePrice = <?php echo floatval($product['price']); ?>;
-    const variationsData = <?php echo $variations_json; ?>;
-    
+    const variationsData = <?php echo $variations_json ?: '[]'; ?>;
+
+    console.log("Base Price:", basePrice);
+    console.log("Variations Data:", variationsData);
+
     if (typeof window.initProductVariationSwitcher === 'function') {
       window.initProductVariationSwitcher(basePrice, variationsData);
+    } else {
+      console.error('script.js load වී නැත නැතහොත් initProductVariationSwitcher සොයාගත නොහැක!');
     }
   });
 </script>

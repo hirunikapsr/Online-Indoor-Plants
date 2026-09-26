@@ -95,7 +95,7 @@ $pot_types = $pdo->query("SELECT * FROM pot_types ORDER BY pot_type_id ASC")->fe
       <!-- Filter Sidebar -->
       <aside class="filter-sidebar">
         <form method="GET" action="shop.php" id="filterForm">
-          
+          <input type="hidden" name="sort" id="sortInput" value="<?php echo htmlspecialchars($sort); ?>">
           <!-- Search Box -->
           <div class="filter-group">
             <h4 class="filter-title">Search Plants</h4>
@@ -169,11 +169,12 @@ $pot_types = $pdo->query("SELECT * FROM pot_types ORDER BY pot_type_id ASC")->fe
           <!-- Sorting Selector -->
           <div style="display: flex; align-items: center; gap: 10px;">
             <label style="font-size: 0.9rem; font-weight: 500;">Sort By:</label>
-            <select name="sort" style="padding: 8px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); font-family: inherit;" onchange="document.getElementById('filterForm').sort.value=this.value; document.getElementById('filterForm').submit();">
+            <select style="padding: 8px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); font-family: inherit;" onchange="document.getElementById('sortInput').value=this.value; document.getElementById('filterForm').submit();">
               <option value="newest" <?php echo ($sort === 'newest') ? 'selected' : ''; ?>>Newest Arrivals</option>
               <option value="price_low" <?php echo ($sort === 'price_low') ? 'selected' : ''; ?>>Price: Low to High</option>
               <option value="price_high" <?php echo ($sort === 'price_high') ? 'selected' : ''; ?>>Price: High to Low</option>
               <option value="name" <?php echo ($sort === 'name') ? 'selected' : ''; ?>>Plant Name (A-Z)</option>
+              <option value="name_desc" <?php echo ($sort === 'name_desc') ? 'selected' : ''; ?>>Plant Name (Z-A)</option>
             </select>
           </div>
         </div>
