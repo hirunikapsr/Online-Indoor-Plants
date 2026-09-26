@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" width="100%" height="100%">
+        <defs>
+            <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#E8F5E9"/>
+                <stop offset="100%" stop-color="#C8E6C9"/>
+            </linearGradient>
+            <filter id="dropShadow" x="-10%" y="-10%" width="130%" height="130%">
+                <feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#1B4332" flood-opacity="0.15"/>
+            </filter>
+        </defs>
+        <rect width="300" height="400" rx="16" fill="url(#bgGrad)"/>
+        <!-- Soft floor shadow -->
+        <ellipse cx="150" cy="375" rx="75" ry="12" fill="#000000" opacity="0.12"/>
+        
+        <g filter="url(#dropShadow)">
+            
+        <ellipse cx="150" cy="280" rx="55" ry="10" fill="#3E2723"/>
+        <!-- Bushy broad leaves -->
+        <path d="M150 280 Q100 200 70 210 Q110 240 150 280 Z" fill="#1B5E20"/>
+        <path d="M150 280 Q200 200 230 210 Q190 240 150 280 Z" fill="#2E7D32"/>
+        <path d="M150 280 Q120 160 90 140 Q130 180 150 280 Z" fill="#1B5E20"/>
+        <path d="M150 280 Q180 160 210 140 Q170 180 150 280 Z" fill="#388E3C"/>
+        <!-- White Spathe Blooms -->
+        <path d="M140 170 Q130 90 145 70 Q160 90 150 170 Z" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="2"/>
+        <line x1="145" y1="140" x2="145" y2="90" stroke="#FFF59D" stroke-width="4" stroke-linecap="round"/>
+        <path d="M170 190 Q175 120 185 100 Q195 120 180 190 Z" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="2"/>
+        <line x1="180" y1="160" x2="182" y2="120" stroke="#FFF59D" stroke-width="4" stroke-linecap="round"/>
+        
+            <path d="M90 280 L105 370 Q150 385 195 370 L210 280 Z" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="4"/>
+                     <ellipse cx="150" cy="280" rx="60" ry="12" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="4"/>
+        </g>
+    </svg>
