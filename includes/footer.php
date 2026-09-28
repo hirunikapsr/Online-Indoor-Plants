@@ -49,8 +49,8 @@ $base_url = $in_subpage ? '../' : './';
           <ul class="footer-links">
             <li><a href="<?php echo $base_url; ?>index.php">Home</a></li>
             <li><a href="<?php echo $base_url; ?>pages/shop.php">Shop</a></li>
-            <li><a href="<?php echo $base_url; ?>pages/about.php">About</a></li>
-            <li><a href="<?php echo $base_url; ?>pages/contact.php">Contact</a></li>
+            <li><a href="<?php echo $base_url; ?>pages/about.php">About Us</a></li>
+            <li><a href="<?php echo $base_url; ?>pages/contact.php">Contact Us</a></li>
           </ul>
         </div>
 
