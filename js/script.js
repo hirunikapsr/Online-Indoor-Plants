@@ -112,9 +112,94 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  
+  // 5. Product Detail - Pot Type & Colour Variation Switcher
+window.initProductVariationSwitcher = function (basePrice, variationsData) {
+  const mainImg = document.getElementById('mainProductImg');
+  const priceDisplay = document.getElementById('productPriceDisplay');
+  const variationIdInput = document.getElementById('selectedVariationId');
+  const stockDisplay = document.getElementById('variationStockDisplay');
 
-    // Initial check
-    updateVariation();
-  ;
+  function updateVariation() {
+    
+    const activePotTypeBtn = document.querySelector('.pot-type-btn.active');
+    const activePotColourBtn = document.querySelector('.pot-colour-btn.active');
+
+    if (!activePotTypeBtn || !activePotColourBtn) return;
+
+    const selectedPotType = Number(activePotTypeBtn.dataset.typeId);
+    const selectedPotColour = Number(activePotColourBtn.dataset.colourId);
+
+    
+    let match = variationsData.find(v => 
+      Number(v.pot_type_id) === selectedPotType && 
+      Number(v.pot_colour_id) === selectedPotColour
+    );
+
+    
+    if (!match) {
+      match = variationsData.find(v => Number(v.pot_type_id) === selectedPotType);
+    }
+
+    if (match) {
+      const variationImgPath = match.image || match.variation_image || match.img;
+      // Update Main Image 
+      if (mainImg && variationImgPath) {
+        mainImg.style.opacity = '0.3';
+        setTimeout(() => {
+          let imagePath = variationImgPath;
+
+          if (!imagePath.startsWith('../') && !imagePath.startsWith('http') && !imagePath.startsWith('/')) {
+            imagePath = '../' + imagePath.replace(/^\/+/, '');
+          }
+
+          
+          mainImg.src = encodeURI(imagePath);
+          mainImg.style.opacity = '1';
+        }, 100);
+      }
+
+      // Price Display Update
+      if (priceDisplay) {
+        const finalPrice = basePrice + parseFloat(match.additional_price || 0);
+        priceDisplay.textContent = 'Rs. ' + Math.round(finalPrice).toLocaleString();
+      }
+
+      // Update Hidden variation_id input 
+      if (variationIdInput) {
+        variationIdInput.value = match.variation_id;
+      }
+
+      // Stock status update
+      if (stockDisplay) {
+        const stockQty = Number(match.stock_quantity || 0);
+        stockDisplay.textContent = stockQty > 0 ? 
+          `In Stock (${stockQty} available)` : 
+          'Out of Stock';
+        stockDisplay.style.color = stockQty > 0 ? '#10b981' : '#ef4444';
+      }
+    }
+    
+  };
+
+  // Event Listener Attaching Function (Include Event Delegation support)
+  function attachSelectionEvents(selector, activeClass) {
+    document.querySelectorAll(selector).forEach(btn => {
+      btn.onclick = function (e) {
+        e.preventDefault(); // Form submission
+        e.stopPropagation();
+
+        document.querySelectorAll(selector).forEach(b => b.classList.remove(activeClass));
+        this.classList.add(activeClass);
+        updateVariation();
+      };
+    });
+  }
+
+  
+  attachSelectionEvents('.pot-type-btn', 'active');
+  attachSelectionEvents('.pot-colour-btn', 'active');
+
+  
+  updateVariation();
+};
 });
