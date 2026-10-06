@@ -4,7 +4,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-/** @var PDO $pdo */
+
 $db_host = '127.0.0.1';
 $db_port = 3307; 
 $db_name = 'online_indoor_plants';

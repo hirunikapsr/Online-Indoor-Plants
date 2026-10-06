@@ -97,7 +97,6 @@ require_once __DIR__ . '/includes/header.php';
 
     <div class="category-grid">
       <?php foreach ($categories as $cat): 
-        // ID එකට අදාළ Static Image එකක් තිබේ නම් එය ගන්නවා, නැතහොත් DB Image එක ගන්නවා
         $cat_id = $cat['category_id'];
         $image_src = isset($static_category_images[$cat_id]) ? $static_category_images[$cat_id] : $cat['image'];
       ?>

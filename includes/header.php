@@ -54,7 +54,7 @@ $base_url = $in_subpage ? '../' : './';
           <a href="<?php echo $base_url; ?>pages/about.php" class="nav-link <?php echo (basename($_SERVER['PHP_SELF']) == 'about.php') ? 'active' : ''; ?>">About Us</a>
         </li>
         <li>
-          <a href="<?php echo $base_url; ?>pages/contact.php" class="nav-link <?php echo (basename($_SERVER['PHP_SELF']) == 'contact.php') ? 'active' : ''; ?>">Contact</a>
+          <a href="<?php echo $base_url; ?>pages/contact.php" class="nav-link <?php echo (basename($_SERVER['PHP_SELF']) == 'contact.php') ? 'active' : ''; ?>">Contact Us</a>
         </li>
         <!-- Admin only-->
   <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
@@ -121,4 +121,6 @@ $base_url = $in_subpage ? '../' : './';
       </div>
 
     </div>
-  </nav>
+</nav>
+
+
