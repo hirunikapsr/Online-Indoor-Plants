@@ -40,14 +40,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $ins = $pdo->prepare("INSERT INTO users (name, email, password, phone, address, city, role) VALUES (?, ?, ?, ?, ?, ?, 'customer')");
             $ins->execute([$name, $email, $hashed_password, $phone, $address, $city]);
             
+            // After User insert (Not Session set, directly redirect Login Page)
             $new_user_id = $pdo->lastInsertId();
-            $_SESSION['user_id'] = $new_user_id;
-            $_SESSION['user_name'] = $name;
-            $_SESSION['user_email'] = $email;
-            $_SESSION['user_role'] = 'customer';
 
-            header("Location: profile.php?msg=registered");
+            // Session Save and  Redirect to Login Page 
+            session_write_close();
+            
+            // PHP Header Redirect
+            header("Location: login.php?msg=registered");
+            
+            // Not PHP Header ,JS Redirect Fallback 
+            echo "<script>window.location.href = 'login.php?msg=registered';</script>";
             exit();
+            
         }
     }
 }
