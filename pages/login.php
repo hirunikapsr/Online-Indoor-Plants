@@ -10,6 +10,12 @@ if (isset($_SESSION['user_id'])) {
 }
 
 $error = '';
+$success = '';
+
+// After Register, Display Success Message 
+if (isset($_GET['msg']) && $_GET['msg'] === 'registered') {
+    $success = 'Registration successful! Please sign in with your credentials.';
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email']);
@@ -52,6 +58,12 @@ require_once __DIR__ . '/../includes/header.php';
         <h1 style="font-size:2.2rem; margin-bottom:8px;">Sign In to Your Account</h1>
         <p style="color:var(--text-muted);">Welcome back! Please enter your details below.</p>
       </div>
+
+      <?php if ($success): ?>
+        <div style="background:#d1fae5; color:#065f46; padding:12px 16px; border-radius:var(--radius-sm); margin-bottom:20px; border-left:4px solid #10b981;">
+          <?php echo htmlspecialchars($success); ?>
+        </div>
+      <?php endif; ?>
 
       <?php if ($error): ?>
         <div style="background:#fee2e2; color:#991b1b; padding:12px 16px; border-radius:var(--radius-sm); margin-bottom:20px; border-left:4px solid #ef4444;">
