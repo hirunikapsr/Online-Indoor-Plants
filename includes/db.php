@@ -12,6 +12,7 @@ $db_user = 'root';
 $db_pass = '';   
 $charset = 'utf8mb4';
 
+//PDO Connection establishing DB linkage
 try {
     $dsn = "mysql:host={$db_host};port={$db_port};dbname={$db_name};charset={$charset}";
     $options = [
