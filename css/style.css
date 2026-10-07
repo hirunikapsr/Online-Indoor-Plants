@@ -1225,9 +1225,15 @@ img {
 
 .admin-stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 25px;
+  grid-template-columns: repeat(5, 1fr); 
+  gap: 20px;
   margin-bottom: 40px;
+}
+
+@media (max-width: 1200px) {
+  .admin-stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
 }
 
 .stat-card {
@@ -1244,6 +1250,8 @@ img {
   color: var(--primary-forest);
   margin-top: 10px;
 }
+
+
 
 /* Responsive Media Queries */
 @media (max-width: 1024px) {
