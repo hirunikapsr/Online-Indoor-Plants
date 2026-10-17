@@ -82,7 +82,7 @@ $variations_json = json_encode($var_stmt->fetchAll());
         <!-- Plant Care & Specifications Grid -->
         <div class="specs-grid">
           <div class="spec-item">
-            <div class="spec-icon">📏</div>
+            <div class="spec-icon"></div>
             <div>
               <div class="spec-label">Plant Size</div>
               <div class="spec-val"><?php echo htmlspecialchars($product['size']); ?></div>
@@ -90,7 +90,7 @@ $variations_json = json_encode($var_stmt->fetchAll());
           </div>
 
           <div class="spec-item">
-            <div class="spec-icon">☀️</div>
+            <div class="spec-icon"></div>
             <div>
               <div class="spec-label">Light Need</div>
               <div class="spec-val"><?php echo htmlspecialchars($product['light_requirement']); ?></div>
@@ -98,7 +98,7 @@ $variations_json = json_encode($var_stmt->fetchAll());
           </div>
 
           <div class="spec-item">
-            <div class="spec-icon">💧</div>
+            <div class="spec-icon"></div>
             <div>
               <div class="spec-label">Water Schedule</div>
               <div class="spec-val"><?php echo htmlspecialchars($product['watering_requirement']); ?></div>
@@ -106,7 +106,7 @@ $variations_json = json_encode($var_stmt->fetchAll());
           </div>
 
           <div class="spec-item">
-            <div class="spec-icon">📍</div>
+            <div class="spec-icon"></div>
             <div>
               <div class="spec-label">Suitable Location</div>
               <div class="spec-val"><?php echo htmlspecialchars($product['suitable_location'] ?? 'Living Room & Office'); ?></div>
@@ -131,7 +131,7 @@ $variations_json = json_encode($var_stmt->fetchAll());
                   <?php if (!empty($pt['image'])): ?>
                     <img src="../<?php echo htmlspecialchars($pt['image']); ?>" alt="" class="pot-thumb-img">
                   <?php else: ?>
-                    🪴
+                    
                   <?php endif; ?>
                   <span><?php echo htmlspecialchars($pt['pot_type_name']); ?></span>
                 </button>
@@ -168,18 +168,26 @@ $variations_json = json_encode($var_stmt->fetchAll());
             </div>
 
             <button type="submit" name="buy_now" value="0" class="btn btn-emerald" style="padding: 14px 35px;">
-              🛒 Add to Cart
+              Add to Cart
             </button>
 
             <button type="submit" name="buy_now" value="1" class="btn btn-primary" style="padding: 14px 30px;">
-              ⚡ Buy Now
+              Buy Now
             </button>
           </div>
 
         </form>
-
+        <!-- Add to Wishlist Button Form -->
+        <form method="POST" action="wishlist.php" style="margin-top: 15px;">
+          <input type="hidden" name="action" value="add">
+          <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
+          
+          <button type="submit" class="btn btn-outline-dark btn-block" style="border-color: #ff3366; color: #ff3366; display: flex; align-items: center; justify-content: center; gap: 8px;">
+            <i class="fa-regular fa-heart"></i> Add to My Wishlist
+          </button>
+        </form>
+        
       </div>
-
     </div>
   </div>
 </section>
@@ -196,7 +204,7 @@ $variations_json = json_encode($var_stmt->fetchAll());
     if (typeof window.initProductVariationSwitcher === 'function') {
       window.initProductVariationSwitcher(basePrice, variationsData);
     } else {
-      console.error('script.js load වී නැත නැතහොත් initProductVariationSwitcher සොයාගත නොහැක!');
+      console.error('script.js has not loaded, or initProductVariationSwitcher cannot be found!');
     }
   });
 </script>

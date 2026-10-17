@@ -201,7 +201,7 @@ $pot_types = $pdo->query("SELECT * FROM pot_types ORDER BY pot_type_id ASC")->fe
                   </h3>
 
                   <div class="product-meta">
-                    <span class="product-meta-item">☀️ <?php echo htmlspecialchars($product['light_requirement']); ?></span>
+                    <span class="product-meta-item"> <?php echo htmlspecialchars($product['light_requirement']); ?></span>
                   </div>
 
                   <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 15px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">

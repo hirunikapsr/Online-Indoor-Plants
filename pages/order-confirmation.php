@@ -101,7 +101,7 @@ require_once __DIR__ . '/../includes/header.php';
                       <h4 style="font-size:1rem; margin-bottom:2px;"><?php echo htmlspecialchars($item['product_name']); ?></h4>
                       <?php if ($item['pot_type_name']): ?>
                         <div style="font-size:0.85rem; color:var(--emerald);">
-                          🪴 <?php echo htmlspecialchars($item['pot_type_name']); ?> Pot (<?php echo htmlspecialchars($item['colour_name']); ?>)
+                           <?php echo htmlspecialchars($item['pot_type_name']); ?> Pot (<?php echo htmlspecialchars($item['colour_name']); ?>)
                         </div>
                       <?php endif; ?>
                     </div>

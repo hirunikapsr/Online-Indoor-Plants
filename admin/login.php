@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   <div class="form-card" style="width: 100%; max-width: 440px; box-shadow: var(--shadow-lg);">
     <div class="text-center" style="margin-bottom: 25px;">
-      <div style="font-size: 3rem; margin-bottom: 10px;">🌿</div>
+      <div style="font-size: 3rem; margin-bottom: 10px;"></div>
       <h2 style="font-size: 2rem;">Admin Control Panel</h2>
       <p style="color: var(--text-muted); font-size: 0.95rem;">Sign in to access store administration.</p>
     </div>

@@ -194,7 +194,7 @@ require_once __DIR__ . '/../includes/header.php';
                           </h4>
                           <?php if ($item['pot_type_name'] && $item['colour_name']): ?>
                             <div style="font-size:0.85rem; color:var(--emerald); font-weight:600;">
-                              🪴 <?php echo htmlspecialchars($item['pot_type_name']); ?> Pot • <?php echo htmlspecialchars($item['colour_name']); ?> Finish
+                              <?php echo htmlspecialchars($item['pot_type_name']); ?> Pot • <?php echo htmlspecialchars($item['colour_name']); ?> Finish
                             </div>
                           <?php endif; ?>
                         </div>

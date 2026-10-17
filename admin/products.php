@@ -83,8 +83,8 @@ $products = $pdo->query($sql)->fetchAll();
           </td>
 
           <td style="font-size:0.85rem; color:var(--text-muted);">
-            📏 <?php echo htmlspecialchars($p['size']); ?><br>
-            🪴 <?php echo htmlspecialchars($p['care_level']); ?>
+            <?php echo htmlspecialchars($p['size']); ?><br>
+            <?php echo htmlspecialchars($p['care_level']); ?>
           </td>
 
           <td>

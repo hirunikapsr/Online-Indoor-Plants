@@ -151,8 +151,8 @@ require_once __DIR__ . '/includes/header.php';
             </h3>
 
             <div class="product-meta">
-              <span class="product-meta-item">📏 <?php echo htmlspecialchars($product['size']); ?></span>
-              <span class="product-meta-item">☀️ <?php echo htmlspecialchars($product['light_requirement']); ?></span>
+              <span class="product-meta-item"> <?php echo htmlspecialchars($product['size']); ?></span>
+              <span class="product-meta-item"> <?php echo htmlspecialchars($product['light_requirement']); ?></span>
             </div>
 
             <div class="product-price-row">
@@ -186,26 +186,26 @@ require_once __DIR__ . '/includes/header.php';
     <div class="features-grid">
       
       <div class="feature-box">
-        <div class="feature-icon">🌬️</div>
-        <h3>Air Purification</h3>
+        <div class="feature-icon"></div>
+        <h3>Air Purification</h3><br>
         <p>Filters out harmful indoor toxins such as formaldehyde, benzene, and carbon dioxide while releasing clean oxygen.</p>
       </div>
 
       <div class="feature-box">
-        <div class="feature-icon">🧠</div>
-        <h3>Mood & Focus</h3>
+        <div class="feature-icon"></div>
+        <h3>Mood & Focus</h3><br>
         <p>Studies show that living plants reduce stress levels, improve mental focus, and increase daily productivity by up to 15%.</p>
       </div>
 
       <div class="feature-box">
-        <div class="feature-icon">🚚</div>
-        <h3>Safe Plant Delivery</h3>
+        <div class="feature-icon"></div>
+        <h3>Safe Plant Delivery</h3><br>
         <p>Specialized eco-friendly packaging guarantees your plants arrive healthy, fresh, and hydrated at your door.</p>
       </div>
 
       <div class="feature-box">
-        <div class="feature-icon">📖</div>
-        <h3>Free Plant Care Guide</h3>
+        <div class="feature-icon"></div>
+        <h3>Free Plant Care Guide</h3><br>
         <p>Every plant comes with detailed watering, light, and potting guidance so your greenery thrives effortlessly.</p>
       </div>
 
@@ -224,7 +224,7 @@ require_once __DIR__ . '/includes/header.php';
         
         <div class="care-card-list">
           <div class="care-card">
-            <div class="care-icon">💧</div>
+            <div class="care-icon"></div>
             <div>
               <h4 style="margin-bottom:4px;">Smart Watering</h4>
               <p style="font-size:0.9rem; color:var(--text-muted);">Check soil moisture 2 inches deep before watering. Avoid overwatering roots.</p>
@@ -232,7 +232,7 @@ require_once __DIR__ . '/includes/header.php';
           </div>
 
           <div class="care-card">
-            <div class="care-icon">☀️</div>
+            <div class="care-icon"></div>
             <div>
               <h4 style="margin-bottom:4px;">Optimal Lighting</h4>
               <p style="font-size:0.9rem; color:var(--text-muted);">Place sun-loving succulents near windows; low-light plants thrive in indirect shade.</p>

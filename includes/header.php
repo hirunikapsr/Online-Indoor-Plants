@@ -14,7 +14,7 @@ $base_url = $in_subpage ? '../' : './';
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Font Awesome CDN -->
@@ -72,7 +72,11 @@ $base_url = $in_subpage ? '../' : './';
                  placeholder="Search plants (e.g. Snake, Lily)..." 
                  autocomplete="off"
                  value="<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>">
-          <button type="submit" class="search-submit-btn" title="Search Plants">🔍</button>
+          <button type="submit" class="search-submit-btn" title="Search Plants">
+            <button type="submit" class="search-submit-btn">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+      </button>
         </form>
         
         <!-- Live AJAX Search Suggestions Container -->
@@ -80,36 +84,39 @@ $base_url = $in_subpage ? '../' : './';
       </div>
 
 
-      <!-- Action Icons (User Account & Cart) -->
+     <!-- Action Icons (User Account & Cart) -->
       <div class="nav-actions">
+        
         <!-- User Account / Profile -->
         <?php if (isset($_SESSION['user_id'])): ?>
           <a href="<?php echo $base_url; ?>pages/profile.php" class="nav-action-btn" title="My Profile">
-            👤 <span style="font-size: 0.9rem; font-weight:600;"><?php echo htmlspecialchars($_SESSION['user_name'] ?? 'Account'); ?></span>
+            <i class="fa-solid fa-user" style="color: #4c3275;"></i> 
+            <span style="font-size: 0.95rem; margin-left: 6px; font-weight:600; color: #1b4332;"><?php echo htmlspecialchars($_SESSION['user_name'] ?? 'Account'); ?></span>
           </a>
-          <a href="<?php echo $base_url; ?>pages/logout.php" class="nav-action-btn" title="Logout" style="font-size:0.9rem; color:#ef4444;">
-    Logout
-</a>
+          <a href="<?php echo $base_url; ?>pages/logout.php" class="nav-action-btn" title="Logout" style="font-size:0.9rem; color:#ef4444; margin-left: 10px;">
+            Logout
+          </a>
         <?php else: ?>
           <a href="<?php echo $base_url; ?>pages/login.php" class="nav-action-btn" title="Login / Register">
-            👤 <span style="font-size: 0.9rem; font-weight:600;">Sign In</span>
+            <i class="fa-solid fa-user" style="color: #000000;"></i> 
+            <span style="font-size: 0.95rem; margin-left: 6px; font-weight:600; color: #1b4332;">Sign In</span>
           </a>
         <?php endif; ?>
 
         <!-- Wishlist Icon with Dynamic Count Badge -->
         <?php $wishlist_url = isset($_SESSION['user_id']) ? $base_url . 'pages/wishlist.php' : $base_url . 'pages/login.php?msg=login_required_wishlist'; ?>
         <a href="<?php echo $wishlist_url; ?>" class="nav-action-btn" title="Wishlist" id="wishlistNavBtn">
-          ❤️ <span class="nav-btn-label">Wishlist</span>
-          <span class="badge" id="headerWishlistBadge" style="<?php echo ($wishlist_count > 0) ? 'display:flex;' : 'display:none;'; ?>">
+          <i class="fa-solid fa-heart" style="color: #000000;"></i> 
+          <span class="nav-btn-label" style="font-size: 0.95rem; margin-left: 6px; font-weight: 600; color: #1b4332;">Wishlist</span>
+          <span class="badge" id="headerWishlistBadge" style="background-color: #d4a373; <?php echo ($wishlist_count > 0) ? 'display:flex;' : 'display:none;'; ?>">
             <?php echo $wishlist_count; ?>
           </span>
         </a>
 
-
         <!-- Cart Icon with Dynamic Count Badge -->
         <a href="<?php echo $base_url; ?>pages/cart.php" class="nav-action-btn" title="Shopping Cart" id="cartNavBtn">
-          🛒
-          <span class="badge" id="headerCartBadge" style="<?php echo ($cart_count > 0) ? 'display:flex;' : 'display:none;'; ?>">
+          <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>
+          <span class="badge" id="headerCartBadge" style="background-color: #d4a373; <?php echo ($cart_count > 0) ? 'display:flex;' : 'display:none;'; ?>">
             <?php echo $cart_count; ?>
           </span>
         </a>
