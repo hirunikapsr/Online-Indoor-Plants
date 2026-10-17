@@ -6,6 +6,69 @@
 document.addEventListener('DOMContentLoaded', function () {
   const baseUrl = window.SITE_BASE_URL || './';
 
+// Form Validation: Friendly Alerts, Green Checkmarks & Prevent Submit
+  const forms = document.querySelectorAll('form');
+  forms.forEach(form => {
+    const inputs = form.querySelectorAll('input[required]');
+    inputs.forEach(input => {
+      // Create element for friendly alert
+      const alertMsg = document.createElement('div');
+      alertMsg.style.color = '#ef4444';
+      alertMsg.style.fontSize = '0.85rem';
+      alertMsg.style.marginTop = '4px';
+      alertMsg.style.display = 'none';
+      input.parentNode.insertBefore(alertMsg, input.nextSibling);
+
+      input.addEventListener('input', function() {
+        let isValid = this.checkValidity();
+        let errorMessage = "";
+
+        // Custom validation specifically for Phone Number
+        if (this.name === 'phone') {
+          const phoneVal = this.value.replace(/\s+/g, ''); 
+          const isOnlyNumbers = /^\+?[0-9]+$/.test(phoneVal); 
+          
+          if (this.value === '') {
+            isValid = false;
+            errorMessage = "This field cannot be empty. Please fill it out.";
+          } else if (!isOnlyNumbers || phoneVal.length < 10) {
+            isValid = false;
+            errorMessage = "Please enter a valid 10-digit phone number (e.g., 077 123 4567)";
+          } else {
+            isValid = true;
+          }
+        } 
+        // Custom validation for Email
+        else if (this.type === 'email') {
+          if (this.validity.typeMismatch) {
+            isValid = false;
+            errorMessage = "Please enter a valid email address (e.g., hello@example.com)";
+          } else if (this.validity.valueMissing) {
+            errorMessage = "This field cannot be empty. Please fill it out.";
+          }
+        } 
+        // Default validation for other text fields
+        else {
+          if (this.validity.valueMissing) {
+            errorMessage = "This field cannot be empty. Please fill it out.";
+          }
+        }
+
+        // Apply styles and block/allow form submission
+        if (isValid) {
+          this.style.border = '2px solid #10b981'; // Green validation check
+          alertMsg.style.display = 'none';
+          this.setCustomValidity(''); // Allows form to submit
+        } else {
+          this.style.border = '2px solid #ef4444'; // Red error alert
+          alertMsg.style.display = 'block';
+          alertMsg.textContent = errorMessage;
+          this.setCustomValidity(errorMessage); // Blocks form submission
+        }
+      });
+    });
+  });
+
   // 1. Mobile Navigation Toggle
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
   const navLinks = document.getElementById('navLinks');
@@ -85,20 +148,31 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // 3. Quantity Selector Controls (Product Detail & Cart)
+ // 3. Quantity Selector Controls & LocalStorage Cart Fix
   const qtyBtns = document.querySelectorAll('.qty-btn');
   qtyBtns.forEach(btn => {
     btn.addEventListener('click', function () {
       const action = this.dataset.action;
       const input = this.parentElement.querySelector('input[type="number"]');
       if (input) {
-        let val = parseInt(input.value) || 1;
+        // Fix: Use parseInt / parseFloat to prevent NaN errors
+        let val = parseFloat(input.value);
+        if (isNaN(val)) val = 1; 
+
         if (action === 'plus') {
           val++;
-        } else if (action === 'minus' && val > 1) {
+        } else if (action === 'minus' && val > 1) { // Disallow negative quantities
           val--;
         }
         input.value = val;
+
+        // Fix: Save cart updates to localStorage
+        localStorage.setItem('saved_cart_qty', val);
+        
+        // Auto submit form in cart page to update counter & subtotal immediately
+        if(this.closest('form') && window.location.href.includes('cart.php')) {
+            this.closest('form').submit();
+        }
       }
     });
   });
