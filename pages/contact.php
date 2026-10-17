@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           </div>
 
           <div style="display:flex; gap:15px; align-items:flex-start;">
-            <div style="font-size:1.5rem; color:var(--emerald);">✉️</div>
+            <div style="font-size:1.5rem; color:var(--emerald);"></div>
             <div>
               <strong style="display:block; margin-bottom:2px;">Email Support</strong>
               <p style="color:var(--text-muted); font-size:0.95rem;">support@onlineindoorplants.com</p>
