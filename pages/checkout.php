@@ -406,37 +406,20 @@ document.addEventListener('DOMContentLoaded', function() {
     // PayHere Callbacks
     payhere.onCompleted = function onCompleted(orderId) {
         console.log("PayHere payment completed for order: " + orderId);
-        // Call local completion endpoint to confirm order status
-        fetch('../api/payhere_complete.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ order_id: orderId })
-        }).then(function(res) {
-            return res.json();
-        }).then(function() {
-            window.location.href = 'order-confirmation.php?id=' + orderId + '&paid=1';
-        }).catch(function() {
-            window.location.href = 'order-confirmation.php?id=' + orderId + '&paid=1';
-        });
+        window.location.href = 'order-confirmation.php?id=' + orderId + '&paid=1';
     };
 
     payhere.onDismissed = function onDismissed() {
-        console.log("PayHere payment dismissed");
         showError("Payment was cancelled or dismissed. You can try again or select Cash on Delivery.");
         submitBtn.disabled = false;
         submitBtn.innerHTML = 'Place Order & Pay with PayHere ➔';
     };
 
     payhere.onError = function onError(error) {
-        console.error("PayHere error: ", error);
         showError("PayHere Error: " + error);
         submitBtn.disabled = false;
         submitBtn.innerHTML = 'Place Order & Pay with PayHere ➔';
     };
-
-    <?php if (isset($payhere_auto_start)): ?>
-    payhere.startPayment(<?php echo json_encode($payhere_auto_start); ?>);
-    <?php endif; ?>
 
     if (checkoutForm) {
         checkoutForm.addEventListener('submit', function(e) {
@@ -444,7 +427,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const paymentMethod = paymentMethodInput ? paymentMethodInput.value : 'Cash on Delivery';
 
             if (paymentMethod === 'Card Payment') {
-                e.preventDefault();
+                e.preventDefault(); // Prevent default form submission
 
                 if (!checkoutForm.checkValidity()) {
                     checkoutForm.reportValidity();
@@ -466,6 +449,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 .then(function(res) { return res.json(); })
                 .then(function(data) {
                     if (data.status === 'payhere' && data.payment) {
+                        
+                        // FIX: Ensure PayHere amount has exactly 2 decimal places using .toFixed(2) as per PDF instructions
+                        data.payment.amount = parseFloat(data.payment.amount).toFixed(2);
+                        
                         payhere.startPayment(data.payment);
                     } else if (data.status === 'error') {
                         showError(data.message || 'An error occurred while preparing your order.');
